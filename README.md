@@ -100,3 +100,4 @@ Open the local URL in your web browser to use the application.
     -   Go to the "Edit Project Data" tab.
     -   Use the "Regenerate" sub-tab to listen to your outputs. If one is imperfect, send it to the Single TTS tab, tweak the parameters, and replace it.
     -   Use the "Edit Text" sub-tab to fix any pronounciation issues you find in your source text chunks.
+    -   Concatenate all audio files into one.
