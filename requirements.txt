@@ -1,0 +1,6 @@
+chatterbox-tts
+gradio==5.31.0
+pydub
+scipy
+webrtcvad
+nltk
