@@ -4,7 +4,7 @@ ChatterboxToolkitUI is a comprehensive web application built with Gradio that pr
 
 ## Key Features
 
--   **Centralized Project Management**: Create, select, and manage dedicated workspaces. All inputs, processed files, and generated outputs are automatically organized into a clean folder structure within the active project.
+-   **Centralized Project Management**: Create, select, and manage dedicated workspaces. All inputs, processed files, and generated outputs are automatically organized into a clean folder structure within the active project or a base directory.
 
 -   **Single Generation**:
     -   **Text-to-Speech (TTS)**: Generate high-quality speech from text using a reference audio file to clone the speaker's voice.
