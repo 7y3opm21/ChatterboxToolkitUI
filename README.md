@@ -31,7 +31,7 @@ Before you begin, ensure you have the following installed on your system:
 
 1.  **Python**: Version **3.11** is required.
 2.  **Git**: For cloning the repository.
-3.  **NVIDIA GPU & CUDA**: For acceptable performance, an NVIDIA GPU is highly recommended. The underlying models will be extremely slow on a CPU.
+3.  **CUDA Compatible GPU**: For acceptable performance, a GPU is highly recommended. The underlying models will be extremely slow on a CPU.
 4.  **FFmpeg**: This is a critical dependency for performing various audio processing tasks.
 
 ## Installation Instructions
