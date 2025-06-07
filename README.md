@@ -21,7 +21,7 @@ ChatterboxToolkitUI is a comprehensive web application built with Gradio that pr
 
 -   **Workflow-Integrated Editing & Refinement**:
     -   **Regenerate Audio**: The "Regenerate" workflow allows you to review individual audio files from a batch run, send them back to the Single TTS tab with their original text and voice pre-loaded, tweak parameters, and replace the old file with the new-and-improved version.
-    -   **Live Text Editor**: Directly edit the content of your processed text files within the UI and save the changes, perfect for fixing typos or making small script adjustments without leaving the application.
+    -   **Live Text Editor**: Directly edit the content of your processed text files within the UI and save the changes, perfect for making small script adjustments without leaving the application.
 
 ## Prerequisites
 
