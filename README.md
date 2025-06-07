@@ -1,103 +1,104 @@
+# ChatterboxToolkitUI 🎙️🧠
 
-<img width="1200" alt="cb-big2" src="https://github.com/user-attachments/assets/bd8c5f03-e91d-4ee5-b680-57355da204d1" />
+ChatterboxToolkitUI is a comprehensive web application built with Gradio that provides a user-friendly interface for advanced audio generation and workflow management using resemble-ai's Chatterbox model.
 
-# Chatterbox TTS
+## Key Features
 
-[![Alt Text](https://img.shields.io/badge/listen-demo_samples-blue)](https://resemble-ai.github.io/chatterbox_demopage/)
-[![Alt Text](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-sm.svg)](https://huggingface.co/spaces/ResembleAI/Chatterbox)
-[![Alt Text](https://static-public.podonos.com/badges/insight-on-pdns-sm-dark.svg)](https://podonos.com/resembleai/chatterbox)
-[![Discord](https://img.shields.io/discord/1377773249798344776?label=join%20discord&logo=discord&style=flat)](https://discord.gg/XqS7RxUp)
+-   **Centralized Project Management**: Create, select, and manage dedicated workspaces. All inputs, processed files, and generated outputs are automatically organized into a clean folder structure within the active project.
 
-_Made with ♥️ by <a href="https://resemble.ai" target="_blank"><img width="100" alt="resemble-logo-horizontal" src="https://github.com/user-attachments/assets/35cf756b-3506-4943-9c72-c05ddfa4e525" /></a>
+-   **Single Generation**:
+    -   **Text-to-Speech (TTS)**: Generate high-quality speech from text using a reference audio file to clone the speaker's voice.
+    -   **Voice Conversion (VC)**: Transfer the vocal characteristics of a reference speaker onto a source audio recording.
+    -   **Parameter Sweeping**: Generate multiple variations of a single output at once by sweeping across a range of values for any generation parameter (e.g., Temperature, Pace, etc.).
 
-We're excited to introduce Chatterbox, [Resemble AI's](https://resemble.ai) first production-grade open source TTS model. Licensed under MIT, Chatterbox has been benchmarked against leading closed-source systems like ElevenLabs, and is consistently preferred in side-by-side evaluations.
+-   **Batch Processing**:
+    -   Process entire folders of prepared text or audio files in bulk with a single click.
+    -   Optionally concatenate all generated files from a batch run into a single, continuous audio file.
 
-Whether you're working on memes, videos, games, or AI agents, Chatterbox brings your content to life. It's also the first open source TTS model to support **emotion exaggeration control**, a powerful feature that makes your voices stand out. Try it now on our [Hugging Face Gradio app.](https://huggingface.co/spaces/ResembleAI/Chatterbox)
+-   **Data Preparation Suite**:
+    -   **Text Splitter**: Automatically chunk long text documents into smaller, model-friendly segments based on sentence boundaries and a configurable character limit.
+    -   **Audio Splitter**: Intelligently split long audio recordings into shorter clips by making cuts during periods of silence, with configurable duration and silence detection parameters.
 
-If you like the model but need to scale or tune it for higher accuracy, check out our competitively priced TTS service (<a href="https://resemble.ai">link</a>). It delivers reliable performance with ultra-low latency of sub 200ms—ideal for production use in agents, applications, or interactive media.
+-   **Workflow-Integrated Editing & Refinement**:
+    -   **Regenerate Audio**: The "Regenerate" workflow allows you to review individual audio files from a batch run, send them back to the Single TTS tab with their original text and voice pre-loaded, tweak parameters, and replace the old file with the new-and-improved version.
+    -   **Live Text Editor**: Directly edit the content of your processed text files within the UI and save the changes, perfect for fixing typos or making small script adjustments without leaving the application.
 
-# Key Details
-- SoTA zeroshot TTS
-- 0.5B Llama backbone
-- Unique exaggeration/intensity control
-- Ultra-stable with alignment-informed inference
-- Trained on 0.5M hours of cleaned data
-- Watermarked outputs
-- Easy voice conversion script
-- [Outperforms ElevenLabs](https://podonos.com/resembleai/chatterbox)
+## Prerequisites
 
-# Tips
-- **General Use (TTS and Voice Agents):**
-  - The default settings (`exaggeration=0.5`, `cfg_weight=0.5`) work well for most prompts.
-  - If the reference speaker has a fast speaking style, lowering `cfg_weight` to around `0.3` can improve pacing.
+Before you begin, ensure you have the following installed on your system:
 
-- **Expressive or Dramatic Speech:**
-  - Try lower `cfg_weight` values (e.g. `~0.3`) and increase `exaggeration` to around `0.7` or higher.
-  - Higher `exaggeration` tends to speed up speech; reducing `cfg_weight` helps compensate with slower, more deliberate pacing.
+1.  **Python**: Version **3.11** is required.
+2.  **Git**: For cloning the repository.
+3.  **NVIDIA GPU & CUDA**: For acceptable performance, an NVIDIA GPU is highly recommended. The underlying models will be extremely slow on a CPU.
+4.  **FFmpeg**: This is a critical dependency for performing various audio processing tasks.
 
+## Installation Instructions
 
-# Installation
+Follow these steps to set up and run the ChatterboxToolkitUI on your local machine or use the ChatterboxToolkitUI.ipynb to run it in a colab environment.
+
+### 1. Clone the Repository
+
+Open your terminal or command prompt and clone the repository.
+
+```bash
+git clone https://github.com/dasjoms/ChatterboxToolkitUI.git
+cd chatterbox
 ```
-pip install chatterbox-tts
+
+### 2. Set Up a Python Virtual Environment
+
+Create a virtual environment using python 3.11 to avoid dependency conflicts.
+
+```bash
+py -3.11 -m venv toolkit
 ```
+Activate the virtual environment.
 
-
-# Usage
-```python
-import torchaudio as ta
-from chatterbox.tts import ChatterboxTTS
-
-model = ChatterboxTTS.from_pretrained(device="cuda")
-
-text = "Ezreal and Jinx teamed up with Ahri, Yasuo, and Teemo to take down the enemy's Nexus in an epic late-game pentakill."
-wav = model.generate(text)
-ta.save("test-1.wav", wav, model.sr)
-
-# If you want to synthesize with a different voice, specify the audio prompt
-AUDIO_PROMPT_PATH = "YOUR_FILE.wav"
-wav = model.generate(text, audio_prompt_path=AUDIO_PROMPT_PATH)
-ta.save("test-2.wav", wav, model.sr)
-```
-See `example_tts.py` and `example_vc.py` for more examples.
-
-# Acknowledgements
-- [Cosyvoice](https://github.com/FunAudioLLM/CosyVoice)
-- [Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning)
-- [HiFT-GAN](https://github.com/yl4579/HiFTNet)
-- [Llama 3](https://github.com/meta-llama/llama3)
-- [S3Tokenizer](https://github.com/xingchensong/S3Tokenizer)
-
-# Built-in PerTh Watermarking for Responsible AI
-
-Every audio file generated by Chatterbox includes [Resemble AI's Perth (Perceptual Threshold) Watermarker](https://github.com/resemble-ai/perth) - imperceptible neural watermarks that survive MP3 compression, audio editing, and common manipulations while maintaining nearly 100% detection accuracy.
-
-
-## Watermark extraction
-
-You can look for the watermark using the following script.
-
-```python
-import perth
-import librosa
-
-AUDIO_PATH = "YOUR_FILE.wav"
-
-# Load the watermarked audio
-watermarked_audio, sr = librosa.load(AUDIO_PATH, sr=None)
-
-# Initialize watermarker (same as used for embedding)
-watermarker = perth.PerthImplicitWatermarker()
-
-# Extract watermark
-watermark = watermarker.get_watermark(watermarked_audio, sample_rate=sr)
-print(f"Extracted watermark: {watermark}")
-# Output: 0.0 (no watermark) or 1.0 (watermarked)
+```bash
+.\toolkit\Scripts\activate
 ```
 
 
-# Official Discord
 
-👋 Join us on [Discord](https://discord.gg/XqS7RxUp) and let's build something awesome together!
+### 3. Install the Project and Dependencies
 
-# Disclaimer
-Don't use this model to do bad things. Prompts are sourced from freely available data on the internet.
+This project uses a `setup.py` script to handle the installation of all required packages.
+
+```bash
+python setup.py
+```
+
+
+## Running the Application
+
+With your virtual environment still active, run the script:
+
+```bash
+python ChatterboxToolkitUI.py
+```
+
+After the application starts, it may need to download and cache the AI models from Hugging Face Hub on the first launch. This can take some time and requires an internet connection. Subsequent launches will be much faster as they will use the local cache.
+
+Once running, you will see output in your terminal like this:
+
+```
+* Running on local URL:  http://127.0.0.1:7860
+```
+
+Open the local URL (`http://127.0.0.1:7860`) in your web browser to use the application.
+
+## A Typical Workflow
+
+1.  **Create a Project**: Navigate to the "Projects" tab and create a new project.
+2.  **Prepare Data**:
+    -   Upload a long text file to the project's `input_files` folder using the "Project Utilities" uploader.
+    -   Go to the "Data Preparation" tab to split the text into manageable chunks. The outputs will be saved to the `processed_text/` folders.
+3.  **Generate Audio**:
+    -   Go to the "Batch Generation" tab.
+    -   Load your processed files from the project.
+    -   Select a reference voice and your desired parameters.
+    -   Run the batch generation.
+4.  **Review & Refine**:
+    -   Go to the "Edit Project Data" tab.
+    -   Use the "Regenerate" sub-tab to listen to your outputs. If one is imperfect, send it to the Single TTS tab, tweak the parameters, and replace it.
+    -   Use the "Edit Text" sub-tab to fix any pronounciation issues you find in your source text chunks.
