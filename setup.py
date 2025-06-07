@@ -1,43 +1,32 @@
 import subprocess
 import sys
-import platform
-import torch
+import os
+
+TORCH_VERSION = "2.6.0"
+TORCH_INDEX_URL = "https://download.pytorch.org/whl/cu118"
 
 def run(cmd):
+    print(f"\n {cmd}\n{'-'*60}")
     subprocess.run(cmd, shell=True, check=True)
 
-def install_torch():
-    torch_version = "2.6.0"
-    torchvision = "torchvision"
-    torchaudio = "torchaudio"
+def install_requirements():
+    if not os.path.exists("requirements.txt"):
+        print("requirements.txt not found.")
+        sys.exit(1)
 
-    try:
-        if not torch.cuda.is_available():
-            print("?? No CUDA-capable GPU detected. Installing CPU-only torch...")
-            run(f"pip install torch=={torch_version}")
-            return
-    except:
-        print("??? PyTorch not installed yet, cannot auto-detect CUDA. Trying NVIDIA tools...")
+    print("Installing project requirements (including torch)...")
+    run("pip install -r requirements.txt --verbose")
 
-    # Fallback detection using nvidia-smi (works before torch is installed)
-    try:
-        output = subprocess.check_output("nvidia-smi", shell=True).decode()
-        if "CUDA Version: 12" in output:
-            index_url = "https://download.pytorch.org/whl/cu121"
-        elif "CUDA Version: 11" in output:
-            index_url = "https://download.pytorch.org/whl/cu118"
-        else:
-            print("?? Unknown or unsupported CUDA version, defaulting to cu118.")
-            index_url = "https://download.pytorch.org/whl/cu118"
-    except:
-        print("? Unable to detect CUDA version with nvidia-smi. Falling back to CPU install.")
-        run(f"pip install torch=={torch_version}")
-        return
+def uninstall_existing_torch():
+    print("Uninstalling any existing torch/vision/audio versions...")
+    run("pip uninstall -y torch torchvision torchaudio")
 
-    # Install with selected CUDA
-    print(f"? Installing torch {torch_version} with index {index_url}")
-    run(f"pip install torch=={torch_version} {torchvision} {torchaudio} --index-url {index_url}")
+def install_torch_cuda():
+    print("Installing torch==2.6.0 with CUDA 11.8 (cu118)...")
+    run(f"pip install torch=={TORCH_VERSION} torchvision torchaudio --index-url {TORCH_INDEX_URL} --verbose")
 
 if __name__ == "__main__":
-    pip install -r requirements.txt
-    install_torch()
+    install_requirements()
+    uninstall_existing_torch()
+    install_torch_cuda()
+    print("\n Setup complete.")
