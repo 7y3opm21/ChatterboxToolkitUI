@@ -42,7 +42,7 @@ Open your terminal or command prompt and clone the repository.
 
 ```bash
 git clone https://github.com/dasjoms/ChatterboxToolkitUI.git
-cd chatterbox
+cd ChatterboxToolkitUI
 ```
 
 ### 2. Set Up a Python Virtual Environment
