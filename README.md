@@ -77,15 +77,13 @@ With your virtual environment still active, run the script:
 python ChatterboxToolkitUI.py
 ```
 
-After the application starts, it may need to download and cache the AI models from Hugging Face Hub on the first launch. This can take some time and requires an internet connection. Subsequent launches will be much faster as they will use the local cache.
-
 Once running, you will see output in your terminal like this:
 
 ```
 * Running on local URL:  http://127.0.0.1:7860
 ```
 
-Open the local URL (`http://127.0.0.1:7860`) in your web browser to use the application.
+Open the local URL in your web browser to use the application.
 
 ## A Typical Workflow
 
