@@ -64,10 +64,11 @@ Activate the virtual environment.
 
 ### 3. Install the Project and Dependencies
 
-This project uses a `setup.py` script to handle the installation of all required packages.
+Users with 10 series NVidia cards or AMD GPUs need to manually install the proper torch 2.6.0 versions.
+Otherwise just install from requirements.txt
 
 ```bash
-python setup.py
+pip install -r requirements.txt
 ```
 
 
