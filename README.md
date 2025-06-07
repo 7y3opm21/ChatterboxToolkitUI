@@ -92,7 +92,7 @@ Open the local URL in your web browser to use the application.
 
 1.  **Create a Project**: Navigate to the "Projects" tab and create a new project.
 2.  **Prepare Data**:
-    -   Upload a long text file to the project's `input_files` folder using the "Project Utilities" uploader.
+    -   Upload a long text file to the project's `input_files` folder using the "Project Utilities" uploader or manually move it there.
     -   Go to the "Data Preparation" tab to split the text into manageable chunks. The outputs will be saved to the `processed_text/` folders.
 3.  **Generate Audio**:
     -   Go to the "Batch Generation" tab.
