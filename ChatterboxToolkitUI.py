@@ -45,7 +45,7 @@ except Exception as e_initial_test: # Catch any error that means sent_tokenize d
     print(f"Attempting to download/re-download 'punkt' to {NLTK_DATA_PATH} with 'force=True' to ensure completeness...")
     try:
         # `punkt` is the correct package to download. `punkt_tab` is an internal resource name.
-        success_download = nltk.download('punkt', download_dir=NLTK_DATA_PATH, quiet=True, force=True)
+        success_download = nltk.download('punkt_tab', download_dir=NLTK_DATA_PATH, quiet=True, force=True)
         
         if success_download:
             # --- STEP 3: Re-test after download ---
