@@ -114,8 +114,7 @@ class ChatterboxVC:
                 speech_tokens=s3_tokens,
                 ref_dict=self.ref_dict,
             )
-            watermarked_wav = self.watermarker.apply_watermark(wav.squeeze(0).detach().cpu().numpy(), sample_rate=self.sr)
-        return torch.from_numpy(watermarked_wav).unsqueeze(0)
+        return torch.from_numpy(wav).unsqueeze(0)
 
     # <--- ADD THIS NEW METHOD ---
     def save_wav(self, wav_tensor: torch.Tensor, output_path: str):
